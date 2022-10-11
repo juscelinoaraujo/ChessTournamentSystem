@@ -24,30 +24,25 @@
 
 public class Performance {
 	
-	private Player player;
 	private double points;
 	private int numWins, numDraws, numLosses;
 	
-	public Performance(Player player) {
-		this.player = new Player(player.getName());
+	public Performance() {
 		points = 0;
 		numWins = 0;
 		numDraws = 0;
 		numLosses = 0;
 	}
 	
-	public updatePerformance(double points) {
+	public void updatePerformance(double points) {
 		this.points += points;
-		if points == 1.0 then
+		if (points == 1.0) {
 			numWins += 1;
-		else if points == 0.5 then
+		} else if (points == 0.5) {
 			numDraws += 1;
-		else
+		} else {
 			numLosses += 1;
-	}
-	
-	public Player getPlayer() {
-		return player;
+		}
 	}
 	
 	public double getPoints() {

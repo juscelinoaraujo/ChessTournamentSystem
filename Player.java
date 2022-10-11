@@ -29,7 +29,7 @@ public class Player {
 	
 	public Player(String name) {
 		this.name = name;
-		games = new ArrayList<>;
+		games = new ArrayList<>();
 	}
 	
 	public void setName(String name) {

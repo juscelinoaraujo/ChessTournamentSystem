@@ -25,7 +25,7 @@
 public class Game {
 	
 	private Player white, black;
-	private int whiteResult, blackResult;
+	private double whiteResult, blackResult;
 	
 	public Game(Player white, Player black) {
 		this.white = white;
@@ -40,19 +40,18 @@ public class Game {
 		return black;
 	}
 	
-	public void setWhiteResult(int result) {
-		whiteResult = result;	
+	public void setResults(double whiteResult, double blackResult) {
+		this.whiteResult = whiteResult;
+		this.blackResult = blackResult;
+		white.addGame(this);
+		black.addGame(this);	
 	}
 	
-	public void setBlackResult(int result) {
-		blackResult = result;	
-	}
-	
-	public int getWhiteResult() {
+	public double getWhiteResult() {
 		return whiteResult;
 	}
 	
-	public int getBlackResult() {
+	public double getBlackResult() {
 		return blackResult;
 	}
 }
