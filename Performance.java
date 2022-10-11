@@ -20,20 +20,24 @@
  * 
  * 
  */
+import java.util.*;
 
-
-public class Performance {
+public class Performance implements Comparator {
 	
+	private Player player;
 	private double points;
 	private int numWins, numDraws, numLosses;
 	
-	public Performance() {
+	// Construtor
+	public Performance(Player player) {
+		this.player = player;
 		points = 0;
 		numWins = 0;
 		numDraws = 0;
 		numLosses = 0;
 	}
 	
+	// Atualiza a performance de um jogador
 	public void updatePerformance(double points) {
 		this.points += points;
 		if (points == 1.0) {
@@ -45,20 +49,42 @@ public class Performance {
 		}
 	}
 	
+	// Retorna o jogador
+	public Player getPlayer() {
+		return player;
+	}
+	
+	// Retorna o numero de pontos
 	public double getPoints() {
 		return points;
 	}
 	
+	// Retorna o numero de vitorias
 	public int getNumWins() {
 		return numWins;
 	}
 	
+	// Retorna o numero de empates
 	public int getNumDraws() {
 		return numDraws;
 	}
 	
+	// Retorna o numero de derrotas
 	public int getNumLosses() {
 		return numLosses;
+	}
+	
+	@Override
+	public int compare(Performance pf1, Performance pf2) {
+
+		int pointsCompare = pf1.getPoints().compareTo(pf2.getPoints());
+		int winsCompare = pf1.getNumWins().compareTo(pf2.getNumWins());
+
+		if (pointsCompare != 0) {
+			return pointsCompare;
+		} else {
+			return winsCompare;
+		}
 	}
 }
 
