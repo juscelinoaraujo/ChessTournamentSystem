@@ -1,27 +1,6 @@
-/*
- * tournament.java
- * 
- * Copyright 2022 temporario <temporario@mestrado-05>
- * 
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301, USA.
- * 
- * 
- */
-import java.util.*;
+package chessTournamentSystem;
 
+import java.util.*;
 public class Tournament {
 	
 	private String name;
@@ -109,7 +88,7 @@ public class Tournament {
 	}
 	
 	// Define os resultados de um jogo
-	public void setGameResult(Game game, double whiteResult, double blackResult) {
+	public void setGameResult(Game game, int whiteResult, int blackResult) {
 		game.setResults(whiteResult, blackResult);
 		for (Performance pf : ranking) {
 			if (pf.getPlayer() == game.getWhite()) {
@@ -127,7 +106,8 @@ public class Tournament {
 	
 	// Atualiza o ranking
 	public void updateRanking() {
-		ranking.sort((pf1,pf2) -> Integer.compare(pf1.getPoints(), pf2.getPoints()));
+		ranking.sort(Comparator.comparing(Performance::getPoints).thenComparing(Performance::getNumWins));
+		Collections.reverse(ranking);
 	}
 	
 	// Retorna o nome do torneio
@@ -181,4 +161,3 @@ public class Tournament {
 		return numRounds;
 	}
 }
-
